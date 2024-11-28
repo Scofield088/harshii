@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>My Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        :root {
+            --bg-color: #191f36;
+            --snd-bf-color: #262840;
+            --text-color: #fff;
+            --main-color: #5982F4;
+            --card-bg-color: #2e3654; 
+            --card-hover-color: #3c456e;
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        /* section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+        }   */
+        section {
+    min-height: 100vh;
+    padding: 5rem 9% 1rem; /* Reduced padding */
+} 
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 700;
+            cursor: default;
+        }
+
+        .navbar a {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            font-weight: 700;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+        }
+
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--text-color);
+            display:none;
+        }
+
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-content h3 {
+            font-size: 3.2rem;
+            font-weight: 700;
+        }
+
+        .home-content h3:nth-of-type(2) {
+            margin-bottom: 2rem;
+        }
+
+        span {
+            color: var(--main-color);
+        }
+
+        .home-content h1 {
+            font-size: 5.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .home-img img {
+            width: 25vw;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-2.4rem);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .home-content p {
+            font-size: 1.6rem;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem; 
+            height: 4rem;
+            background: transparent;
+            border: 0.2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 2rem; 
+            color: var(--main-color);
+            margin: 1.5rem; 
+            transition: 0.5s ease;
+        }
+
+        .social-media a:hover {
+            background-color: var(--main-color);
+            color: var(--snd-bf-color);
+            box-shadow: 0 0 1rem var(--main-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--main-color);
+            border-radius: 4rem;
+            box-shadow: 0 0 1rem var(--main-color);
+            font-size: 1.6rem;
+            color: var(--bg-color);
+            letter-spacing: .1rem;
+            font-weight: 600;
+            transition: .5s ease;
+        }
+
+        .btn:hover {
+            box-shadow: none;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--main-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .timeline-item {
+            padding: 2rem 4rem;
+            position: relative;
+            background-color: var(--card-bg-color);
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 100%;
+            background-color: var(--main-color);
+            top: 0;
+            left: -3px;
+        }
+
+        .timeline-item:nth-child(even) {
+            float: right;
+            clear: both;
+        }
+
+        .timeline-item:nth-child(odd) {
+            float: left;
+            clear: both;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: var(--card-bg-color);
+            border-radius: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-item h3 {
+            font-size: 2.2rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .timeline-item p {
+            font-size: 1.6rem;
+            color: var(--text-color);
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: space-between; /* Adjusts spacing between flashcards */
+            flex-wrap: wrap; /* Ensures wrapping if the content overflows */
+            gap: 20px; /* Adds space between flashcards */
+        }
+
+        .skills-box {
+            background-color: var(--card-bg-color);
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+            text-align: center; /* Center-align the text */
+        }
+
+        .skills-box:hover {
+            transform: scale(1.1);
+        }
+
+        .skills-box h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--main-color);
+        }
+
+        .skills-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-box li {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            transition: color 0.3s;
+            justify-content: center; /* Center-align the icons and text */
+        }
+
+        .skills-box li i {
+            margin-right: 10px;
+        }
+
+        .skills-box li:hover {
+            color: var(--main-color);
+        }
+
+        .projects {
+            background: var(--snd-bf-color);
+            padding: 5rem 9%;
+        }
+
+        .projects h2 {
+            margin-bottom: 4rem;
+            text-align: center;
+            color: var(--main-color);
+            font-size: 3rem;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            justify-items: center;
+        }
+
+        .projects-box {
+            position: relative;
+            border-radius: 2rem;
+            box-shadow: 0 0 1rem var(--bg-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: var(--card-bg-color);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .projects-box img {
+            width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            opacity: 0.7;
+        }
+
+        .projects-box:hover img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .projects-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            color: var(--text-color);
+        }
+
+        .projects-box:hover .projects-layer {
+            transform: translateY(0);
+        }
+
+        .projects-layer h4 {
+            font-size: 2.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: black;
+        }
+
+        .projects-layer p {
+            font-size: 1.6rem;
+            margin: 0 0 1rem;
+            line-height: 1.4;
+        }
+
+        .projects-layer a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background: var(--main-color);
+            border-radius: 50%;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .projects-layer a i {
+            font-size: 2rem;
+        }
+
+        .projects-layer a:hover {
+            background: var(--card-hover-color);
+        }
+
+        .contact .social-media {
+    display: flex;
+    justify-content: center; /* Horizontally center the icons */
+    gap: 1.5rem;
+    margin-top: 2rem; /* Add some margin if needed */
+}
+
+.contact .social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem; 
+    height: 4rem;
+    background: transparent;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem; 
+    color: var(--main-color);
+    transition: 0.5s ease;
+}
+
+.contact .social-media a:hover {
+    background-color: var(--main-color);
+    color: var(--snd-bf-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 3%;
+    }
+    section {
+        padding: 5rem 3%; /* Adjusted for better spacing */
+    }
+    .skills {
+        padding: 5rem 3%; /* Adjusted padding */
+    }
+    .projects {
+        padding: 5rem 3%; /* Adjusted padding */
+    }
+    .contact {
+        padding: 5rem 3%; /* Adjusted padding */
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+    }
+    .navbar.active {
+        display: block;
+    }
+    .navbar a {
+        display: block;
+        font-size: 2rem; /* Larger font for mobile */
+        margin: 2rem 0; /* Adjusted margin */
+        text-align: center;
+    }
+    .home {
+        flex-direction: column;
+        text-align: center; /* Center text for mobile */
+    }
+    .home-content h3 {
+        font-size: 2.6rem; /* Adjusted font size */
+    }
+    .home-content h1 {
+        font-size: 4.5rem; /* Adjusted font size */
+    }
+    .home-img img {
+        width: 70vw; /* Adjusted width for mobile */
+        margin-top: 2rem; /* Reduced margin */
+    }
+    .about {
+        flex-direction: column;
+        text-align: center; /* Center text for mobile */
+    }
+    .about-img img {
+        width: 90vw; /* Adjusted width for mobile */
+        margin-top: 2rem; /* Reduced margin */
+    }
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for mobile */
+    }
+}
+
+@media (max-width: 617px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+    .home-img img {
+        width: 80vw; /* Adjusted width */
+        margin-top: 4rem; /* Adjusted margin */
+    }
+    .about-img img {
+        width: 100vw; /* Full width for small screens */
+        margin-top: 2rem; /* Adjusted margin */
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 50%; /* Smaller base font size */
+    }
+    .home-content h1 {
+        font-size: 3.5rem; /* Smaller heading */
+    }
+    .home-content h3 {
+        font-size: 2rem; /* Smaller subheading */
+    }
+    .skills-box {
+        width: 100%; /* Full width for skills boxes */
+        padding: 1rem; /* Adjusted padding */
+    }
+    .contact .social-media a {
+        width: 40px; /* Fixed size for icons */
+        height: 40px; /* Fixed size for icons */
+        font-size: 1.5rem; /* Adjusted icon size */
+    }
+    .contact p {
+        font-size: 14px; /* Smaller font size */
+        text-align: center;
+    }
+}
+
+/* 
+        @media (max-width: 991px) {
+    .header {
+        padding: 2rem 3%;
+    }
+    section {
+        padding: 10rem 3%;
+    }
+    .skills {
+        padding: 7rem;
+    }
+    .projects {
+        padding-bottom: 2rem;
+    }
+    .contact {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+    }
+    .navbar.active {
+        display: block;
+    }
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        text-align: center;
+    }
+    .home {
+        flex-direction: column;
+    }
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+    .home-content h1 {
+        font-size: 5rem;
+    }
+    .home-content {
+        order: 2;
+        text-align: center;
+    }
+    .home-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    .about {
+        flex-direction: column;
+    }
+    .about-img img {
+        width: 90vw;
+        margin-top: 4rem;
+    }
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media (max-width: 617px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+    .home-img img {
+        width: 80vw;
+        margin-top: 8rem;
+    }
+    .about-img img {
+        width: 100vw;
+        margin-top: 4rem;
+    }
+}
+@media (max-width: 360x) {
+    html {
+        font-size: 50% !important;
+    }
+    .home-content h1 {
+        font-size: 4.5rem !important;
+    }
+    .home-content h3 {
+        font-size: 2.4rem !important;
+    }
+    .home-img img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+    }
+    .skills-card {
+        width: 100% !important; /* Take full width on very small screens */
+        padding: 1rem !important;
+    }
+    .skills-card h3 {
+        font-size: 1.6rem !important;
+    }
+    .skills-card ul li {
+        font-size: 1.4rem !important;
+    }
+    .contact .home-content {
+        padding: 10px;
+    }
+
+    .contact .section-title {
+        font-size: 24px;
+    }
+
+    /* /* .contact .social-media a {
+        font-size: 18px;
+        margin: 0 8px;
+    }
+
+    .contact .social-media a i {
+        font-size: 20px; 
+    } */
+    .contact .social-media a {
+        display: inline-block;
+        padding: 8px; /* Adjust the padding to reduce the vertical height */
+        margin: 5px; /* Adjust the margin between the icons */
+        height: 40px; /* Set a fixed height to control the icon size */
+        width: 40px; /* Set a fixed width to keep the icons square */
+        border-radius: 50%; /* Make the icons circular */
+        line-height: 24px; /* Align the icon inside the circle */
+    }
+
+    .contact .social-media a i {
+        font-size: 20px; /* Adjust the font size of the icons */
+        vertical-align: middle; /* Vertically center the icons */
+    }
+
+    .contact p {
+        font-size: 14px;
+        text-align: center;
+    }
+} */
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home" class="active">About</a>
+            <a href="#about">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hi, I'm</h3>
+            <h1>Mandala Harshitha</h1>
+            <h3>And I'm good at <span class="multiple-text"></span></h3><br>
+            <p>I am pursuing Btech in CVR COLLEGE OF ENGINEERING</p>
+            <P>CGPA:9.2/10</P>
+            <div class="social-media">
+                <a href="https://www.linkedin.com/in/mandala-harshitha-9a6652296?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://leetcode.com/u/harshitha0523/"><i class="fa-solid fa-code"></i></a>
+                <a href="https://www.geeksforgeeks.org/user/harshitjnzj/"><i class="fa-brands fa-hackerrank"></i></a>
+                <a href="mailto:harshitha0523@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <a href="#" class="btn" id="resume-btn">View Resume</a>
+        </div>
+        <div class="home-img">
+            <img src="h1.jpg" alt="photo">
+        </div>
+    </section>
+    <section class="about" id="about">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>August 2024 - September 2024</h3>
+                    <h4>Intern at OasisInfobyte</h4>
+                    <p>Java Development</p><br>
+                </div>
+            </div>
+            <!-- <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>August 2024 - September 2024</h3>
+                    <h4>Intern at OasisInfobyte</h4>
+                    <p>Java Development</p>
+                </div>
+            </div> -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>July 2024 - August 2024</h3>
+                    <h4>Google AI-ML Virtual Internship</h4>
+                    <p>Neural network,Object Detection,product image serach</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section class="skills" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skills-box">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li><i class="fa-brands fa-java"></i>Java</li>
+                    <li><i class="fa-brands fa-python"></i>Python</li>
+                    <li><i class="fa-brands fa-js"></i>JavaScript</li>
+                    <li>C</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>Technologies</h3>
+                <ul>
+                    <li><i class="fa-brands fa-react"></i>ReactJS</li>
+                    <li><i class="fa-brands fa-node-js"></i>NodeJS</li>
+                    <li>ExpressJS</li>
+                    <li>Firebase</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>Database Skills</h3>
+                <ul>
+                    <li>MongoDB</li>
+                    <li>MySQL</li>
+                    <li>SQLite</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>Domain</h3>
+                <ul>
+                    <li>Machine Learning</li>
+                    <li>Data-Science</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="projects" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="projects-box">
+                <img src="iris.png" alt="Iris Species Detection">
+                <div class="projects-layer">
+                    <h4>Iris Species Detection</h4>
+                    <p>Created a fully functional web-based Iris Flower Detection System over a period of 4 weeks in July 2024. Classified Iris flowers into different species based on their sepal and petal measurements using models like Decision Tree Classifier, Logistic Regression, KNN, and SVM, and evaluated using various metrics.</p>
+                    <a href="https://github.com/harshithareddy77/irisspecies"><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="projects-box">
+                <img src="data" alt="Project 2">
+                <div class="projects-layer">
+                    <h4>DataInsights</h4>
+                    <p>Developed a user-friendly web application that allows users to edit, update, and add new data efficiently. Implemented features for real-time data modification, ensuring a seamless user experience with robust backend support for data integrity and security. </p>
+                    <a href=""><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="projects-box">
+                <img src="reserv1" alt="Project 3">
+                <div class="projects-layer">
+                    <h4>Online Reservation System</h4>
+                    <p> Developed a comprehensive ticket booking system, including features for user authentication, ticket reservations,
+                        and cancellations.</p>
+                    <a href=""><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="home-content">
+            <h2 class="section-title">Contact</h2>
+            <div class="social-media">
+                <a href="https://www.linkedin.com/in/mandala-harshitha-9a6652296"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" id="whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" id="instagram-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/harshithareddy77"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:harshitha0523@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <div>
+                <p style="text-align: center;">Feel free to contact me!!</p>
+</section>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
